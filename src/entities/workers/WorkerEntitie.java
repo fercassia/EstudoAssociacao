@@ -18,11 +18,13 @@ public class WorkerEntitie {
 
     private List<HourContractEntitie> contracts = new ArrayList<>();
     private String incomeSearching;
+    private Double resultSalary;
 
-    public WorkerEntitie(String name, WorkerLevel level, DepartmentEntitie department) {
+    public WorkerEntitie(String name, Double baseSalary, WorkerLevel level, DepartmentEntitie department) {
         this.name = name;
         this.level = level;
         this.department = department;
+        this.baseSalary = baseSalary;
     }
 
     public String getName() {
@@ -65,17 +67,19 @@ public class WorkerEntitie {
 
         incomeSearching = String.format("%02d/%d", month, year);
 
-        this.baseSalary = contracts.stream()
+        Double calcSalary = contracts.stream()
                 .filter(c -> monthYearFormat.format(c.getDate()).equals(incomeSearching))
                 .mapToDouble(HourContractEntitie::TotalValue)
                 .sum();
-        return this.baseSalary;
+        resultSalary = this.baseSalary+calcSalary;
+
+        return resultSalary;
     }
 
     @Override
     public String toString() {
         return  "{Name: " + this.name + ",\nDepartment: " + this.department.getName() +
-                ",\nIncome for " + incomeSearching + ": " + this.baseSalary +
+                ",\nIncome for " + incomeSearching + ": " + this.resultSalary +
                 ",\nWorker Level: "+ level.getWorkerNivel() +"}";
     }
 }

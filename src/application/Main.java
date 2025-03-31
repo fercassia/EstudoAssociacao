@@ -12,7 +12,7 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
 
-        WorkerEntitie workerOne = new WorkerEntitie("Fernanda Cassia",
+        WorkerEntitie workerOne = new WorkerEntitie("Fernanda Cassia", 1000.00,
                                     WorkerLevel.MID_LEVEL,
                                     new DepartmentEntitie("QA"));
 
@@ -28,7 +28,7 @@ public class Main {
 
             workerOne.AddContract(contractOne);
             workerOne.AddContract(new HourContractEntitie(dtTwo, 10.0, 1));
-            workerOne.AddContract(new HourContractEntitie(dtTree, 10.0, 2));
+            workerOne.AddContract(new HourContractEntitie(dtTree, 15.0, 2));
             workerOne.AddContract(new HourContractEntitie(dtFour, 10.0, 1));
 
             workerOne.RemoveContract(contractOne);//Remover
